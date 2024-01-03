@@ -1,39 +1,72 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Models.DTO;
 using Mango.Web.Service.IService;
+using Mango.Web.Utility;
 
 namespace Mango.Web.Service
 {
     public class CouponService : ICouponService
     {
-        public Task<ResponseDto?> CreateCouponsAsync(CouponDTO couponDto)
+        private readonly IBaseService _baseService;
+        public CouponService(IBaseService baseService)
         {
-            throw new NotImplementedException();
+            _baseService = baseService;
         }
 
-        public Task<ResponseDto?> DeleteCouponsAsync(int id)
+        public async Task<ResponseDto?> CreateCouponsAsync(CouponDTO couponDto)
         {
-            throw new NotImplementedException();
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.POST,
+                Data = couponDto,
+                Url = SD.CouponAPIBase + "/api/coupon/"
+            });
         }
 
-        public Task<ResponseDto?> GetAllCouponsAsync()
+        public async Task<ResponseDto?> DeleteCouponsAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.DELETE,
+                Url = SD.CouponAPIBase + "/api/coupon/" + id
+            });
         }
 
-        public Task<ResponseDto?> GetCouponAsync(string couponCode)
+        public async Task<ResponseDto?> GetAllCouponsAsync()
         {
-            throw new NotImplementedException();
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.CouponAPIBase + "/api/coupon/"
+            });
         }
 
-        public Task<ResponseDto?> GetCouponByIdAsync(int id)
+        public async Task<ResponseDto?> GetCouponAsync(string couponCode)
         {
-            throw new NotImplementedException();
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.CouponAPIBase + "/api/coupon/GetByCode/" + couponCode
+            });
         }
 
-        public Task<ResponseDto?> UpdateCouponsAsync(CouponDTO couponDto)
+        public async Task<ResponseDto?> GetCouponByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.CouponAPIBase + "/api/coupon/" + id
+            });
+        }
+
+        public async Task<ResponseDto?> UpdateCouponsAsync(CouponDTO couponDto)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.PUT,
+                Data = couponDto,
+                Url = SD.CouponAPIBase + "/api/coupon/"
+            });
         }
     }
 }
