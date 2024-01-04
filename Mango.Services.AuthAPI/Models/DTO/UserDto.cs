@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace Mango.Services.AuthAPI.Models.DTO
+﻿namespace Mango.Services.AuthAPI.Models.DTO
 {
     public class UserDto
     {

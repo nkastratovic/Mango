@@ -25,7 +25,7 @@ namespace Mango.Services.AuthAPI.Service
             throw new NotImplementedException();
         }
 
-        public async Task<UserDto> Register(RegistrationRequestDTO registrationRequestDTO)
+        public async Task<string> Register(RegistrationRequestDTO registrationRequestDTO)
         {
             ApplicationUser user = new()
             {
@@ -49,13 +49,18 @@ namespace Mango.Services.AuthAPI.Service
                         Name = userToReturn.Name,
                         PhoneNumber = userToReturn.PhoneNumber
                     };
+                    return "";
+                }
+                else
+                {
+                    return result.Errors.FirstOrDefault().Description;
                 }
             }
             catch (Exception)
             {
             }
 
-            return new UserDto();
+            return "Error ";
         }
     }
 }
