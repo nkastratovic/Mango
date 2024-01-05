@@ -43,10 +43,5 @@ namespace Mango.Services.AuthAPI.Service
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
-
-        public string GenerateToken(ApplicationUser applicationUser)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
