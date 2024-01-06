@@ -6,39 +6,38 @@ namespace Mango.Web.Service
 {
     public class AuthService : IAuthService
     {
-        private readonly IBaseService _baseServiceService;
-
-        public AuthService(IBaseService baseServiceService)
+        private readonly IBaseService _baseService;
+        public AuthService(IBaseService baseService)
         {
-            _baseServiceService = baseServiceService;
+            _baseService = baseService;
         }
 
-        public async Task<ResponseDto> AssigneRoleAsync(RegistrationRequestDto registrationRequestDTO)
+        public async Task<ResponseDto?> AssignRoleAsync(RegistrationRequestDto registrationRequestDto)
         {
-            return await _baseServiceService.SendAsync(new RequestDto()
+            return await _baseService.SendAsync(new RequestDto()
             {
-                ApiType = Utility.SD.ApiType.POST,
-                Data = registrationRequestDTO,
+                ApiType = SD.ApiType.POST,
+                Data = registrationRequestDto,
                 Url = SD.AuthAPIBase + "/api/auth/AssignRole"
             });
         }
 
-        public async Task<ResponseDto> LoginAsync(LoginRequestDto loginRequestDto)
+        public async Task<ResponseDto?> LoginAsync(LoginRequestDto loginRequestDto)
         {
-            return await _baseServiceService.SendAsync(new RequestDto()
+            return await _baseService.SendAsync(new RequestDto()
             {
-                ApiType = Utility.SD.ApiType.POST,
+                ApiType = SD.ApiType.POST,
                 Data = loginRequestDto,
                 Url = SD.AuthAPIBase + "/api/auth/login"
             });
         }
 
-        public async Task<ResponseDto> RegisterAsync(RegistrationRequestDto registrationRequestDTO)
+        public async Task<ResponseDto?> RegisterAsync(RegistrationRequestDto registrationRequestDto)
         {
-            return await _baseServiceService.SendAsync(new RequestDto()
+            return await _baseService.SendAsync(new RequestDto()
             {
-                ApiType = Utility.SD.ApiType.POST,
-                Data = registrationRequestDTO,
+                ApiType = SD.ApiType.POST,
+                Data = registrationRequestDto,
                 Url = SD.AuthAPIBase + "/api/auth/register"
             });
         }
