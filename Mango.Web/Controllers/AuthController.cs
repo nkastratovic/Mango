@@ -1,6 +1,13 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Service.IService;
+using Mango.Web.Utility;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
+using System.Security.Claims;
 
 namespace Mango.Web.Controllers
 {
@@ -22,7 +29,8 @@ namespace Mango.Web.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            RegistrationRequestDto registrationRequestDto = new();
+            return View(registrationRequestDto);
         }
 
         public IActionResult Logout()
