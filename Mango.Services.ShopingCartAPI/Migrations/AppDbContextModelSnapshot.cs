@@ -32,9 +32,6 @@ namespace Mango.Services.ShoppingCartAPI.Migrations
                     b.Property<int>("CartHeaderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CartHeadersId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -43,7 +40,7 @@ namespace Mango.Services.ShoppingCartAPI.Migrations
 
                     b.HasKey("CartDetailsId");
 
-                    b.HasIndex("CartHeadersId");
+                    b.HasIndex("CartHeaderId");
 
                     b.ToTable("CartDetails");
                 });
@@ -71,7 +68,7 @@ namespace Mango.Services.ShoppingCartAPI.Migrations
                 {
                     b.HasOne("Mango.Services.ShoppingCartAPI.Models.CartHeader", "CartHeader")
                         .WithMany()
-                        .HasForeignKey("CartHeadersId")
+                        .HasForeignKey("CartHeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
