@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mango.Services.CouponAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240110081803_Initial")]
+    [Migration("20240110141147_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

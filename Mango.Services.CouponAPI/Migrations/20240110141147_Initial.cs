@@ -8,11 +8,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Mango.Services.CouponAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class SeedCouponTables : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Coupons",
+                columns: table => new
+                {
+                    CouponId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CouponCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DiscountAmount = table.Column<double>(type: "float", nullable: false),
+                    MinAmount = table.Column<int>(type: "int", nullable: false),
+                    LastUpdated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Coupons", x => x.CouponId);
+                });
+
             migrationBuilder.InsertData(
                 table: "Coupons",
                 columns: new[] { "CouponId", "CouponCode", "DiscountAmount", "LastUpdated", "MinAmount" },
@@ -26,15 +42,8 @@ namespace Mango.Services.CouponAPI.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DeleteData(
-                table: "Coupons",
-                keyColumn: "CouponId",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Coupons",
-                keyColumn: "CouponId",
-                keyValue: 2);
+            migrationBuilder.DropTable(
+                name: "Coupons");
         }
     }
 }
