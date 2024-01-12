@@ -1,7 +1,7 @@
 ﻿using Azure.Identity;
 using Mango.Services.AuthAPI.Data;
 using Mango.Services.AuthAPI.Models;
-using Mango.Services.AuthAPI.Models.DTO;
+using Mango.Services.AuthAPI.Models.Dto;
 using Mango.Services.AuthAPI.Service.IService;
 using Microsoft.AspNetCore.Identity;
 using System.Data;
@@ -72,7 +72,7 @@ namespace Mango.Services.AuthAPI.Service
 
         }
 
-        public async Task<string> Register(RegistrationRequestDTO registrationRequestDTO)
+        public async Task<string> Register(RegistrationRequestDto registrationRequestDTO)
         {
             ApplicationUser user = new()
             {
