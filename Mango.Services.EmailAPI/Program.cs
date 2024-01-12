@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Mango.Services.EmailAPI.Data;
+using Mango.Services.EmailAPI.Messaging;
+using Mango.Services.EmailAPI.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
 
