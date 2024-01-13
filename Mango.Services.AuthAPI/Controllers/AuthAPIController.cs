@@ -1,6 +1,5 @@
-﻿using Mango.Services.AuthAPI.Models.DTO;
+﻿using Mango.Services.AuthAPI.Models.Dto;
 using Mango.Services.AuthAPI.Service.IService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mango.Services.AuthAPI.Controllers
@@ -18,14 +17,17 @@ namespace Mango.Services.AuthAPI.Controllers
             _response = new();
         }
 
+
+
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegistrationRequestDTO model)
+        public async Task<IActionResult> Register([FromBody] RegistrationRequestDto model)
         {
+
             var errorMessage = await _authService.Register(model);
             if (!string.IsNullOrEmpty(errorMessage))
             {
                 _response.IsSuccess = false;
-                _response.Message = errorMessage;
+                _response.Message= errorMessage;
                 return BadRequest(_response);
             }
             return Ok(_response);
@@ -35,27 +37,31 @@ namespace Mango.Services.AuthAPI.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {
             var loginResponse = await _authService.Login(model);
-            if(loginResponse.User == null) 
+            if (loginResponse.User == null)
             {
                 _response.IsSuccess = false;
-                _response.Message = "User of password is incorrect";
+                _response.Message = "Username or password is incorrect";
                 return BadRequest(_response);
             }
             _response.Result = loginResponse;
             return Ok(_response);
+
         }
 
         [HttpPost("AssignRole")]
-        public async Task<IActionResult> AssignRole([FromBody] RegistrationRequestDTO model)
+        public async Task<IActionResult> AssignRole([FromBody] RegistrationRequestDto model)
         {
-            var assignRoleSuccessful = await _authService.AssignRole(model.Email, model.Role);
-            if (assignRoleSuccessful == null)
+            var assignRoleSuccessful = await _authService.AssignRole(model.Email,model.Role.ToUpper());
+            if (!assignRoleSuccessful)
             {
                 _response.IsSuccess = false;
-                _response.Message = "Error encountred";
+                _response.Message = "Error encountered";
                 return BadRequest(_response);
             }
             return Ok(_response);
+
         }
+
+
     }
 }

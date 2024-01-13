@@ -11,16 +11,19 @@ namespace Mango.Web.Controllers
         private readonly IProductService _productService;
         public ProductController(IProductService productService)
         {
-            _productService = productService;
+            _productService=productService;
         }
+
+
         public async Task<IActionResult> ProductIndex()
         {
             List<ProductDto>? list = new();
 
             ResponseDto? response = await _productService.GetAllProductsAsync();
+
             if (response != null && response.IsSuccess)
             {
-                list=JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(response.Result));
+                list= JsonConvert.DeserializeObject<List<ProductDto>>(Convert.ToString(response.Result));
             }
             else
             {
@@ -41,6 +44,7 @@ namespace Mango.Web.Controllers
             if (ModelState.IsValid)
             {
                 ResponseDto? response = await _productService.CreateProductsAsync(model);
+
                 if (response != null && response.IsSuccess)
                 {
                     TempData["success"] = "Product created successfully";
