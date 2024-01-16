@@ -1,5 +1,4 @@
-﻿using Mango.Web.Models;
-
+﻿
 namespace Mango.Web.Models
 {
     public class CartDetailsDto
