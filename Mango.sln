@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.MessageBus", "Mango.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Services.EmailAPI", "Mango.Services.EmailAPI\Mango.Services.EmailAPI.csproj", "{C6FDE9CF-606A-45FD-A8DC-E3B691C8CC33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.OrderAPI", "Mango.Services.OrderAPI\Mango.Services.OrderAPI.csproj", "{1E3E05E8-6591-4688-BB5F-DED84F62A1B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Services.OrderAPI", "Mango.Services.OrderAPI\Mango.Services.OrderAPI.csproj", "{1E3E05E8-6591-4688-BB5F-DED84F62A1B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.RewardAPI", "Mango.Services.RewardAPI\Mango.Services.RewardAPI.csproj", "{7D067A11-E696-4B97-B3F4-1969B3710752}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{1E3E05E8-6591-4688-BB5F-DED84F62A1B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E3E05E8-6591-4688-BB5F-DED84F62A1B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E3E05E8-6591-4688-BB5F-DED84F62A1B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D067A11-E696-4B97-B3F4-1969B3710752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D067A11-E696-4B97-B3F4-1969B3710752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D067A11-E696-4B97-B3F4-1969B3710752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D067A11-E696-4B97-B3F4-1969B3710752}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{9B2CEA12-18B3-4125-BD60-374724C2148A} = {FF871352-6F47-42B6-8F15-170B42BFEA2A}
 		{C6FDE9CF-606A-45FD-A8DC-E3B691C8CC33} = {756C61F8-76D1-4E94-8C13-344151A7CCB1}
 		{1E3E05E8-6591-4688-BB5F-DED84F62A1B6} = {756C61F8-76D1-4E94-8C13-344151A7CCB1}
+		{7D067A11-E696-4B97-B3F4-1969B3710752} = {756C61F8-76D1-4E94-8C13-344151A7CCB1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {03FAC245-13F3-4D8F-AF46-A34BE7342C0D}
