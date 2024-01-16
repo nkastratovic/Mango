@@ -7,6 +7,7 @@ using Mango.Services.OrderAPI.Service.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Stripe.Checkout;
 
 using Mango.MessageBus;
 using Microsoft.EntityFrameworkCore;
