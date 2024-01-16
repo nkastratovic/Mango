@@ -33,6 +33,5 @@ namespace Mango.Web.Service
                 Url = SD.OrderAPIBase + "/api/order/CreateStripeSession"
             });
         }
-        
     }
 }

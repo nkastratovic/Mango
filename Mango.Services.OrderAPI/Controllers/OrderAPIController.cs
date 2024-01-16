@@ -3,14 +3,12 @@ using Mango.Services.OrderAPI.Data;
 using Mango.Services.OrderAPI.Models;
 using Mango.Services.OrderAPI.Models.Dto;
 using Mango.Services.OrderAPI.Utility;
-using Mango.Services.OrderAPI.Service.IService;
+using Mango.Services.ShoppingCartAPI.Service.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Stripe.Checkout;
-
-using Mango.MessageBus;
-using Microsoft.EntityFrameworkCore;
+using Stripe;
 
 namespace Mango.Services.OrderAPI.Controllers
 {
@@ -30,6 +28,7 @@ namespace Mango.Services.OrderAPI.Controllers
             _productService = productService;
             _mapper = mapper;
         }
+
         [Authorize]
         [HttpPost("CreateOrder")]
         public async Task<ResponseDto> CreateOrder([FromBody] CartDto cartDto)
@@ -40,7 +39,7 @@ namespace Mango.Services.OrderAPI.Controllers
                 orderHeaderDto.OrderTime = DateTime.Now;
                 orderHeaderDto.Status = SD.Status_Pending;
                 orderHeaderDto.OrderDetails = _mapper.Map<IEnumerable<OrderDetailsDto>>(cartDto.CartDetails);
-                orderHeaderDto.OrderTotal = Math.Round(orderHeaderDto.OrderTotal, 2);
+
                 OrderHeader orderCreated = _db.OrderHeaders.Add(_mapper.Map<OrderHeader>(orderHeaderDto)).Entity;
                 await _db.SaveChangesAsync();
 
@@ -69,18 +68,9 @@ namespace Mango.Services.OrderAPI.Controllers
                     CancelUrl = stripeRequestDto.CancelUrl,
                     LineItems = new List<SessionLineItemOptions>(),                     
                     Mode = "payment",
-                    
                 };
 
-                var DiscountsObj = new List<SessionDiscountOptions>()
-                {
-                    new SessionDiscountOptions
-                    {
-                        Coupon=stripeRequestDto.OrderHeader.CouponCode
-                    }
-                };
-
-                foreach (var item in stripeRequestDto.OrderHeader.OrderDetails)
+                foreach(var item in stripeRequestDto.OrderHeader.OrderDetails)
                 {
                     var sessionLineItem = new SessionLineItemOptions
                     {
@@ -99,10 +89,7 @@ namespace Mango.Services.OrderAPI.Controllers
                     options.LineItems.Add(sessionLineItem);
                 }
 
-                if (stripeRequestDto.OrderHeader.Discount > 0)
-                {
-                    options.Discounts = DiscountsObj;
-                }
+
                 var service = new SessionService();
                 Session session = service.Create(options);
                 stripeRequestDto.StripeSessionUrl = session.Url;
@@ -110,6 +97,7 @@ namespace Mango.Services.OrderAPI.Controllers
                 orderHeader.StripeSessionId = session.Id;
                 _db.SaveChanges();
                 _response.Result = stripeRequestDto;
+
             }
             catch(Exception ex)
             {

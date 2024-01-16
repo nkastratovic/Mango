@@ -1,7 +1,6 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Service;
 using Mango.Web.Service.IService;
-using Mango.Web.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -67,9 +66,10 @@ namespace Mango.Web.Controllers
             }
             return View();
         }
+
         public async Task<IActionResult> Confirmation(int orderId)
         {
-            return View();
+            return View(orderId);
         }
 
         public async Task<IActionResult> Remove(int cartDetailsId)

@@ -5,7 +5,6 @@ using Mango.Services.CouponAPI.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace Mango.Services.CouponAPI.Controllers
 {
     [Route("api/coupon")]

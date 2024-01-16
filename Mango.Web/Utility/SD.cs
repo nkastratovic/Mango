@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata;
-
-namespace Mango.Web.Utility
+﻿namespace Mango.Web.Utility
 {
     public class SD
     {
