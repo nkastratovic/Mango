@@ -53,5 +53,22 @@ namespace Mango.Services.OrderAPI.Controllers
             }
             return _response;
         }
+
+
+        [Authorize]
+        [HttpPost("CreateStripeSession")]
+        public async Task<ResponseDto> CreateStripeSession([FromBody] StripeRequestDto stripeRequestDto)
+        {
+            try
+            {
+                
+            }
+            catch(Exception ex)
+            {
+                _response.Message= ex.Message;
+                _response.IsSuccess = false;
+            }
+            return _response;
+        }
     }
 }
