@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -21,8 +20,7 @@ namespace Mango.Services.CouponAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CouponCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DiscountAmount = table.Column<double>(type: "float", nullable: false),
-                    MinAmount = table.Column<int>(type: "int", nullable: false),
-                    LastUpdated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    MinAmount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,11 +29,11 @@ namespace Mango.Services.CouponAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Coupons",
-                columns: new[] { "CouponId", "CouponCode", "DiscountAmount", "LastUpdated", "MinAmount" },
+                columns: new[] { "CouponId", "CouponCode", "DiscountAmount", "MinAmount" },
                 values: new object[,]
                 {
-                    { 1, "200ff", 10.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 20 },
-                    { 2, "200ff", 20.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 40 }
+                    { 1, "10OFF", 10.0, 20 },
+                    { 2, "20OFF", 20.0, 40 }
                 });
         }
 

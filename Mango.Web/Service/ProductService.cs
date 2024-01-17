@@ -17,8 +17,8 @@ namespace Mango.Web.Service
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.POST,
-                Data = productDto,
-                Url = SD.ProductAPIBase + "/api/product/"
+                Data=productDto,
+                Url = SD.ProductAPIBase + "/api/product" 
             });
         }
 
@@ -28,7 +28,7 @@ namespace Mango.Web.Service
             {
                 ApiType = SD.ApiType.DELETE,
                 Url = SD.ProductAPIBase + "/api/product/" + id
-            });
+            }); 
         }
 
         public async Task<ResponseDto?> GetAllProductsAsync()
@@ -36,7 +36,7 @@ namespace Mango.Web.Service
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.ProductAPIBase + "/api/product/"
+                Url = SD.ProductAPIBase + "/api/product"
             });
         }
 
@@ -45,7 +45,7 @@ namespace Mango.Web.Service
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.ProductAPIBase + "/api/product/GetByCode/" + productCode
+                Url = SD.ProductAPIBase + "/api/product/GetByCode/"+productCode
             });
         }
 
@@ -60,12 +60,12 @@ namespace Mango.Web.Service
 
         public async Task<ResponseDto?> UpdateProductsAsync(ProductDto productDto)
         {
-			return await _baseService.SendAsync(new RequestDto()
-			{
-				ApiType = SD.ApiType.PUT,
-				Data = productDto,
-				Url = SD.ProductAPIBase + "/api/product/"
-			});
-		}
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.PUT,
+                Data = productDto,
+                Url = SD.ProductAPIBase + "/api/product"
+            });
+        }
     }
 }

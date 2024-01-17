@@ -2,7 +2,6 @@
 using Mango.Services.ProductAPI.Data;
 using Mango.Services.ProductAPI.Models;
 using Mango.Services.ProductAPI.Models.Dto;
-using Mango.Services.ProductAPI.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,11 +40,11 @@ namespace Mango.Services.ProductAPI.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public object Get(int id)
+        public ResponseDto Get(int id)
         {
             try
             {
-                Product obj = _db.Products.FirstOrDefault(u => u.ProductId == id);
+                Product obj = _db.Products.First(u=>u.ProductId==id);
                 _response.Result = _mapper.Map<ProductDto>(obj);
             }
             catch (Exception ex)
@@ -56,15 +55,16 @@ namespace Mango.Services.ProductAPI.Controllers
             return _response;
         }
 
-        [HttpPost]
+       [HttpPost]
         [Authorize(Roles = "ADMIN")]
-        public ResponseDto Post([FromBody] ProductDto productDto)
+        public ResponseDto Post([FromBody] ProductDto ProductDto)
         {
             try
             {
-                Product obj = _mapper.Map<Product>(productDto);
+                Product obj = _mapper.Map<Product>(ProductDto);
                 _db.Products.Add(obj);
                 _db.SaveChanges();
+
                 _response.Result = _mapper.Map<ProductDto>(obj);
             }
             catch (Exception ex)
@@ -74,16 +74,18 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             return _response;
         }
+
 
         [HttpPut]
         [Authorize(Roles = "ADMIN")]
-        public ResponseDto Put([FromBody] ProductDto productDto)
+        public ResponseDto Put([FromBody] ProductDto ProductDto)
         {
             try
             {
-                Product obj = _mapper.Map<Product>(productDto);
+                Product obj = _mapper.Map<Product>(ProductDto);
                 _db.Products.Update(obj);
                 _db.SaveChanges();
+
                 _response.Result = _mapper.Map<ProductDto>(obj);
             }
             catch (Exception ex)
@@ -95,8 +97,8 @@ namespace Mango.Services.ProductAPI.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Roles = "ADMIN")]
         [Route("{id:int}")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Delete(int id)
         {
             try

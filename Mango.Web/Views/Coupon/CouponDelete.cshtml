@@ -4,17 +4,17 @@
     <br />
     <div class="container border p-3">
         <h1 class="text-white text-center">Delete Coupon</h1>
-        <input asp-for="CouponId" hidden/>
+        <input asp-for="CouponId" hidden />
         <hr />
         <div class="row">
             <div class="col-2">
-                <label class="control-label pt-2" style="font-size:20px;">Coupon Code</label>
+                <label class="control-label pt-2" style="font-size:20px;"> Coupon Code</label>
             </div>
             <div class="col-10 pb-3">
                 <input asp-for="CouponCode" disabled class="form-control" />
             </div>
             <div class="col-2">
-                <label class="control-label pt-2" style="font-size:20px;">Discaunt Amount</label>
+                <label class="control-label pt-2" style="font-size:20px;">Discount Amount</label>
             </div>
             <div class="col-10 pb-3">
                 <input asp-for="DiscountAmount" disabled class="form-control" />
@@ -27,12 +27,10 @@
             </div>
 
             <div class="col-5 offset-2">
-
                 <a asp-action="CouponIndex" class="btn-primary btn form-control ">Back to List</a>
             </div>
             <div class="col-5">
                 <input type="submit" value="Delete" class="btn btn-danger form-control" />
-
             </div>
 
         </div>
@@ -41,3 +39,4 @@
         </div>
     </div>
 </form>
+
