@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mango.Services.EmailAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240112111618_Initial")]
+    [Migration("20240119154632_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
