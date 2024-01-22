@@ -21,7 +21,7 @@ builder.Services.AddSingleton(new EmailService(optionBuilder.Options));
 builder.Services.AddHostedService<RabbitMQAuthConsumer>();
 builder.Services.AddHostedService<RabbitMQOrderConsumer>();
 builder.Services.AddHostedService<RabbitMQCartConsumer>();
-builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -42,7 +42,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 ApplyMigration();
-app.UseAzureServiceBusConsumer();
 app.Run();
 
 
